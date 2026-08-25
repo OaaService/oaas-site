@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>OAAS — Studio de solutions logicielles</title>
-<meta name="description" content="OAAS conçoit des solutions logicielles simples et fiables : Sentinel (monitoring SaaS & Kubernetes) et BabyWatch (babyphone pour montre Wear OS).">
-<meta property="og:title" content="OAAS — Studio de solutions logicielles">
-<meta property="og:description" content="Des outils qui font une chose, et la font bien. Sentinel · BabyWatch.">
+<title>OAAS — Software studio</title>
+<meta name="description" content="OAAS builds focused, dependable software: Sentinel (SaaS & Kubernetes monitoring) and BabyWatch (baby monitor for Wear OS watches).">
+<meta property="og:title" content="OAAS — Software studio">
+<meta property="og:description" content="Software that does one thing, and does it well. Sentinel · BabyWatch.">
 <style>
   :root {
     --ink: #14121f; --ink-2: #4a4660; --muted: #8a869a;
@@ -72,7 +72,11 @@
   footer { border-top: 1px solid var(--line); padding: 2.5rem 0 3rem; color: var(--muted); font-size: .88rem; }
   footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
   footer a { color: var(--muted); }
+  .lang { display: flex; gap: .2rem; margin-left: 1rem; }
+  .lang a { font-size: .8rem; font-weight: 700; padding: .2rem .5rem; border-radius: 6px; color: var(--muted); }
+  .lang a.active { background: color-mix(in srgb, var(--violet) 14%, transparent); color: var(--violet); }
 </style>
+<script src="i18n.js" defer></script>
 </head>
 <body>
 
@@ -80,68 +84,69 @@
   <div class="wrap">
     <a class="logo" href="#">OAA<span>S</span></a>
     <ul>
-      <li><a href="#solutions">Solutions</a></li>
-      <li><a href="#approche">Approche</a></li>
-      <li><a href="#studio">Studio</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#solutions" data-i18n="nav.solutions">Solutions</a></li>
+      <li><a href="#approach" data-i18n="nav.approach">Approach</a></li>
+      <li><a href="#studio" data-i18n="nav.studio">Studio</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+      <li class="lang"><a href="#" data-lang="en">EN</a><a href="#" data-lang="fr">FR</a></li>
     </ul>
   </div>
 </nav>
 
 <header class="hero">
   <div class="wrap">
-    <span class="eyebrow">Studio indépendant · France</span>
-    <h1>Des solutions logicielles qui font une chose, et la font bien.</h1>
-    <p class="lead">OAAS conçoit et édite des outils sobres et fiables — du monitoring d'infrastructure cloud au babyphone de poignet. Même exigence partout : simplicité, robustesse, respect des données.</p>
-    <a class="btn" href="#solutions">Découvrir les solutions</a>
-    <a class="btn ghost" href="#contact">Nous écrire</a>
+    <span class="eyebrow" data-i18n="hero.eyebrow">Independent software studio · France</span>
+    <h1 data-i18n="hero.title">Software that does one thing, and does it well.</h1>
+    <p class="lead" data-i18n="hero.lead"></p>
+    <a class="btn" href="#solutions" data-i18n="hero.cta1">Explore our solutions</a>
+    <a class="btn ghost" href="#contact" data-i18n="hero.cta2">Get in touch</a>
   </div>
 </header>
 
 <section id="solutions">
   <div class="wrap">
-    <h2>Solutions</h2>
-    <p class="sub">Deux produits, deux mondes, une même philosophie.</p>
+    <h2 data-i18n="sol.title">Solutions</h2>
+    <p class="sub" data-i18n="sol.sub"></p>
     <div class="grid">
 
       <article class="card">
         <div class="icon sentinel">◎</div>
         <h3>Sentinel</h3>
-        <p class="tag">Monitoring pour SaaS &amp; Kubernetes</p>
-        <p><strong>Know when your services break.</strong> Sentinel agrège les signaux de santé de n'importe quel système — Prometheus, Grafana, Datadog, Kubernetes — et alerte instantanément via Slack, email ou webhook. Découverte automatique des services, cartographie d'infrastructure, détection des rollouts.</p>
-        <div class="chips"><span class="chip">SaaS</span><span class="chip">Kubernetes</span><span class="chip">Helm Operator</span><span class="chip">Freemium</span></div>
-        <a class="cta" href="https://sentinel-app.io" target="_blank" rel="noopener">sentinel-app.io →</a>
+        <p class="tag" data-i18n="sentinel.tag"></p>
+        <p data-i18n="sentinel.desc"></p>
+        <div class="chips"><span class="chip">SaaS</span><span class="chip">Kubernetes</span><span class="chip">Helm Operator</span><span class="chip" data-i18n="sentinel.chip4">Freemium</span></div>
+        <a class="cta" href="https://sentinel-app.io" target="_blank" rel="noopener" data-i18n="sentinel.cta">sentinel-app.io →</a>
       </article>
 
       <article class="card">
         <div class="icon babywatch">🌙</div>
         <h3>BabyWatch</h3>
-        <p class="tag">Babyphone pour montre Wear OS</p>
-        <p><strong>Babyphone oublié ? Ta montre suffit.</strong> La montre écoute la chambre, le téléphone t'alerte — en Bluetooth, sans compte, sans serveur, sans abonnement. Détection des pleurs auto-calibrée, écoute en direct, talk-back, bruit blanc et berceuse, alerte de liaison perdue.</p>
-        <div class="chips"><span class="chip">Android</span><span class="chip">Wear OS</span><span class="chip">100 % hors ligne</span><span class="chip">Bientôt sur Google Play</span></div>
-        <a class="cta" href="privacy.html">Politique de confidentialité →</a>
+        <p class="tag" data-i18n="bw.tag"></p>
+        <p data-i18n="bw.desc"></p>
+        <div class="chips"><span class="chip">Android</span><span class="chip">Wear OS</span><span class="chip" data-i18n="bw.chip3"></span><span class="chip" data-i18n="bw.chip4"></span></div>
+        <a class="cta" href="privacy.html" data-i18n="bw.cta"></a>
       </article>
 
     </div>
   </div>
 </section>
 
-<section id="approche">
+<section id="approach">
   <div class="wrap">
-    <h2>Approche</h2>
-    <p class="sub">Ce qu'on refuse de négocier.</p>
+    <h2 data-i18n="approach.title"></h2>
+    <p class="sub" data-i18n="approach.sub"></p>
     <div class="principles">
       <div class="principle">
-        <h3>Simple par design</h3>
-        <p>Un produit doit se comprendre en dix secondes. La complexité est absorbée par le logiciel, jamais reportée sur l'utilisateur.</p>
+        <h3 data-i18n="p1.h"></h3>
+        <p data-i18n="p1.p"></p>
       </div>
       <div class="principle">
-        <h3>Fiable avant tout</h3>
-        <p>Un outil de monitoring ou un babyphone qui se tait quand ça casse est pire que rien. Nos produits alertent aussi quand <em>eux</em> perdent la main.</p>
+        <h3 data-i18n="p2.h"></h3>
+        <p data-i18n="p2.p"></p>
       </div>
       <div class="principle">
-        <h3>Données respectées</h3>
-        <p>Hors ligne par défaut quand c'est possible, aucun tracking, aucune donnée collectée sans raison. Ce que vous ne nous donnez pas ne peut pas fuiter.</p>
+        <h3 data-i18n="p3.h"></h3>
+        <p data-i18n="p3.p"></p>
       </div>
     </div>
   </div>
@@ -150,12 +155,12 @@
 <section id="studio">
   <div class="wrap about">
     <div>
-      <h2>Le studio</h2>
-      <p>OAAS est un studio logiciel indépendant fondé par <strong>Olivier de Régis</strong>, ingénieur logiciel et infrastructure. Après des années à construire et opérer des plateformes cloud, l'envie de faire des produits nets, sans bruit, qui règlent un vrai problème — le sien d'abord, souvent.</p>
-      <p>Sentinel est né du besoin de voir clair dans des clusters Kubernetes en production. BabyWatch, d'un babyphone oublié un soir chez des amis.</p>
+      <h2 data-i18n="studio.title"></h2>
+      <p data-i18n="studio.p1"></p>
+      <p data-i18n="studio.p2"></p>
     </div>
     <div class="contact-card" id="contact">
-      <p>Une question, un projet, un retour sur un produit ?</p>
+      <p data-i18n="contact.p"></p>
       <a href="mailto:contact@oaas.studio">contact@oaas.studio</a>
     </div>
   </div>
@@ -163,8 +168,8 @@
 
 <footer>
   <div class="wrap">
-    <div>© OAAS · SAS au capital de 100 € · 12 rue de Rivoli, 59230 Saint-Amand-les-Eaux, France · SIREN 953 100 484</div>
-    <div><a href="privacy.html">Confidentialité BabyWatch</a> · <a href="https://sentinel-app.io" target="_blank" rel="noopener">Sentinel</a></div>
+    <div data-i18n="footer.legal"></div>
+    <div><a href="privacy.html" data-i18n="footer.privacy"></a> · <a href="https://sentinel-app.io" target="_blank" rel="noopener">Sentinel</a></div>
   </div>
 </footer>
 
