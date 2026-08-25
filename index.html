@@ -3,44 +3,170 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>OAAS — studio d'applications mobiles</title>
-<meta name="description" content="OAAS conçoit des applications mobiles simples et respectueuses de la vie privée. Éditeur de BabyWatch, le babyphone pour montre Wear OS.">
+<title>OAAS — Studio de solutions logicielles</title>
+<meta name="description" content="OAAS conçoit des solutions logicielles simples et fiables : Sentinel (monitoring SaaS & Kubernetes) et BabyWatch (babyphone pour montre Wear OS).">
+<meta property="og:title" content="OAAS — Studio de solutions logicielles">
+<meta property="og:description" content="Des outils qui font une chose, et la font bien. Sentinel · BabyWatch.">
 <style>
-  :root { --violet: #6a5ae0; --ink: #1c1b22; --muted: #5a5668; --bg: #fdfbff; --card: #f3f0fb; }
+  :root {
+    --ink: #14121f; --ink-2: #4a4660; --muted: #8a869a;
+    --bg: #fbfaff; --surface: #ffffff; --line: #e9e6f3;
+    --violet: #6a5ae0; --violet-2: #9c6ade; --peach: #c98a9e; --teal: #1fb8a6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --ink: #ece9f5; --ink-2: #bdb8cc; --muted: #8a869a; --bg: #0f0e17; --surface: #17152a; --line: #262340; }
+  }
   * { box-sizing: border-box; }
-  body { margin: 0; font-family: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.6; }
-  header { padding: 4rem 1.5rem 3rem; text-align: center; background: linear-gradient(160deg, #6a5ae0, #9c6ade 60%, #c98a9e); color: #fff; }
-  header h1 { margin: 0 0 .5rem; font-size: 2.4rem; letter-spacing: -.02em; }
-  header p { margin: 0; opacity: .9; font-size: 1.1rem; }
-  main { max-width: 760px; margin: 0 auto; padding: 2.5rem 1.5rem; }
-  .card { background: var(--card); border-radius: 24px; padding: 1.8rem; margin: 1.5rem 0; }
-  .card h2 { margin-top: 0; color: var(--violet); }
-  .badge { display: inline-block; background: #e6e0ff; color: #21195b; border-radius: 999px; padding: .2rem .8rem; font-weight: 600; font-size: .9rem; margin-right: .4rem; }
-  a { color: var(--violet); }
-  footer { color: var(--muted); font-size: .9rem; text-align: center; padding: 2rem 1.5rem 3rem; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: -apple-system, system-ui, "Segoe UI", Inter, Roboto, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  a { color: var(--violet); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem; }
+
+  nav { position: sticky; top: 0; backdrop-filter: blur(12px); background: color-mix(in srgb, var(--bg) 80%, transparent); border-bottom: 1px solid var(--line); z-index: 10; }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font-weight: 800; letter-spacing: -.03em; font-size: 1.25rem; color: var(--ink); }
+  .logo span { color: var(--violet); }
+  nav ul { list-style: none; display: flex; gap: 1.6rem; margin: 0; padding: 0; }
+  nav ul a { color: var(--ink-2); font-weight: 500; font-size: .95rem; }
+  @media (max-width: 600px) { nav ul { gap: 1rem; font-size: .9rem; } }
+
+  .hero { padding: 6rem 0 4rem; position: relative; overflow: hidden; }
+  .hero::before { content: ""; position: absolute; inset: -40% -20% auto; height: 120%; background: radial-gradient(60% 50% at 70% 30%, color-mix(in srgb, var(--violet) 18%, transparent), transparent 70%); pointer-events: none; }
+  .eyebrow { display: inline-block; font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--violet); margin-bottom: 1rem; }
+  h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.08; letter-spacing: -.03em; margin: 0 0 1.2rem; max-width: 18ch; }
+  .lead { font-size: 1.2rem; color: var(--ink-2); max-width: 56ch; margin: 0 0 2rem; }
+  .btn { display: inline-block; padding: .8rem 1.4rem; border-radius: 999px; font-weight: 600; background: var(--violet); color: #fff; }
+  .btn:hover { text-decoration: none; filter: brightness(1.08); }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); margin-left: .6rem; }
+
+  section { padding: 4.5rem 0; }
+  h2 { font-size: 1.9rem; letter-spacing: -.02em; margin: 0 0 .5rem; }
+  .sub { color: var(--muted); margin: 0 0 2.2rem; }
+
+  .grid { display: grid; gap: 1.4rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 2rem; display: flex; flex-direction: column; gap: .9rem; transition: transform .2s, box-shadow .2s; }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px -24px color-mix(in srgb, var(--violet) 50%, transparent); }
+  .card .icon { width: 56px; height: 56px; border-radius: 18px; display: grid; place-items: center; font-size: 1.7rem; color: #fff; }
+  .icon.sentinel { background: linear-gradient(135deg, #1fb8a6, #2a6df4); }
+  .icon.babywatch { background: linear-gradient(135deg, #6a5ae0, #c98a9e); }
+  .card h3 { margin: 0; font-size: 1.35rem; letter-spacing: -.01em; }
+  .card .tag { color: var(--muted); font-size: .9rem; margin-top: -.5rem; }
+  .card p { margin: 0; color: var(--ink-2); }
+  .chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .chip { font-size: .78rem; font-weight: 600; padding: .25rem .7rem; border-radius: 999px; background: color-mix(in srgb, var(--violet) 12%, transparent); color: var(--violet); }
+  .card .cta { margin-top: auto; padding-top: .6rem; font-weight: 600; }
+
+  .principles { display: grid; gap: 1.4rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .principle { padding: 1.6rem; border-left: 3px solid var(--violet); }
+  .principle h3 { margin: 0 0 .4rem; font-size: 1.1rem; }
+  .principle p { margin: 0; color: var(--ink-2); }
+
+  .about { display: grid; gap: 2.5rem; grid-template-columns: 1.2fr 1fr; align-items: start; }
+  @media (max-width: 720px) { .about { grid-template-columns: 1fr; } }
+  .about p { color: var(--ink-2); }
+  .contact-card { background: linear-gradient(135deg, var(--violet), var(--violet-2) 60%, var(--peach)); color: #fff; border-radius: 24px; padding: 2rem; }
+  .contact-card a { color: #fff; font-weight: 700; font-size: 1.15rem; }
+  .contact-card p { margin: 0 0 .8rem; opacity: .92; }
+
+  footer { border-top: 1px solid var(--line); padding: 2.5rem 0 3rem; color: var(--muted); font-size: .88rem; }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+  footer a { color: var(--muted); }
 </style>
 </head>
 <body>
-<header>
-  <h1>OAAS</h1>
-  <p>Studio d'applications mobiles — simples, utiles, et qui ne collectent rien.</p>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#">OAA<span>S</span></a>
+    <ul>
+      <li><a href="#solutions">Solutions</a></li>
+      <li><a href="#approche">Approche</a></li>
+      <li><a href="#studio">Studio</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Studio indépendant · France</span>
+    <h1>Des solutions logicielles qui font une chose, et la font bien.</h1>
+    <p class="lead">OAAS conçoit et édite des outils sobres et fiables — du monitoring d'infrastructure cloud au babyphone de poignet. Même exigence partout : simplicité, robustesse, respect des données.</p>
+    <a class="btn" href="#solutions">Découvrir les solutions</a>
+    <a class="btn ghost" href="#contact">Nous écrire</a>
+  </div>
 </header>
-<main>
-  <div class="card">
-    <h2>🌙 BabyWatch</h2>
-    <p><span class="badge">Android</span><span class="badge">Wear OS</span></p>
-    <p><strong>Babyphone oublié ? Ta montre suffit.</strong> BabyWatch transforme une montre Wear OS en babyphone : la montre écoute la chambre, le téléphone t'alerte — en Bluetooth, sans compte, sans serveur, sans abonnement.</p>
-    <p>Détection des pleurs avec calibration automatique, écoute en direct, talk-back, bruit blanc et berceuse, alerte de liaison perdue et de batterie faible.</p>
-    <p><a href="privacy.html">Politique de confidentialité</a></p>
+
+<section id="solutions">
+  <div class="wrap">
+    <h2>Solutions</h2>
+    <p class="sub">Deux produits, deux mondes, une même philosophie.</p>
+    <div class="grid">
+
+      <article class="card">
+        <div class="icon sentinel">◎</div>
+        <h3>Sentinel</h3>
+        <p class="tag">Monitoring pour SaaS &amp; Kubernetes</p>
+        <p><strong>Know when your services break.</strong> Sentinel agrège les signaux de santé de n'importe quel système — Prometheus, Grafana, Datadog, Kubernetes — et alerte instantanément via Slack, email ou webhook. Découverte automatique des services, cartographie d'infrastructure, détection des rollouts.</p>
+        <div class="chips"><span class="chip">SaaS</span><span class="chip">Kubernetes</span><span class="chip">Helm Operator</span><span class="chip">Freemium</span></div>
+        <a class="cta" href="https://sentinel-app.io" target="_blank" rel="noopener">sentinel-app.io →</a>
+      </article>
+
+      <article class="card">
+        <div class="icon babywatch">🌙</div>
+        <h3>BabyWatch</h3>
+        <p class="tag">Babyphone pour montre Wear OS</p>
+        <p><strong>Babyphone oublié ? Ta montre suffit.</strong> La montre écoute la chambre, le téléphone t'alerte — en Bluetooth, sans compte, sans serveur, sans abonnement. Détection des pleurs auto-calibrée, écoute en direct, talk-back, bruit blanc et berceuse, alerte de liaison perdue.</p>
+        <div class="chips"><span class="chip">Android</span><span class="chip">Wear OS</span><span class="chip">100 % hors ligne</span><span class="chip">Bientôt sur Google Play</span></div>
+        <a class="cta" href="privacy.html">Politique de confidentialité →</a>
+      </article>
+
+    </div>
   </div>
-  <div class="card">
-    <h2>Contact</h2>
-    <p><a href="mailto:contact@oaas.studio">contact@oaas.studio</a></p>
+</section>
+
+<section id="approche">
+  <div class="wrap">
+    <h2>Approche</h2>
+    <p class="sub">Ce qu'on refuse de négocier.</p>
+    <div class="principles">
+      <div class="principle">
+        <h3>Simple par design</h3>
+        <p>Un produit doit se comprendre en dix secondes. La complexité est absorbée par le logiciel, jamais reportée sur l'utilisateur.</p>
+      </div>
+      <div class="principle">
+        <h3>Fiable avant tout</h3>
+        <p>Un outil de monitoring ou un babyphone qui se tait quand ça casse est pire que rien. Nos produits alertent aussi quand <em>eux</em> perdent la main.</p>
+      </div>
+      <div class="principle">
+        <h3>Données respectées</h3>
+        <p>Hors ligne par défaut quand c'est possible, aucun tracking, aucune donnée collectée sans raison. Ce que vous ne nous donnez pas ne peut pas fuiter.</p>
+      </div>
+    </div>
   </div>
-</main>
+</section>
+
+<section id="studio">
+  <div class="wrap about">
+    <div>
+      <h2>Le studio</h2>
+      <p>OAAS est un studio logiciel indépendant fondé par <strong>Olivier de Régis</strong>, ingénieur logiciel et infrastructure. Après des années à construire et opérer des plateformes cloud, l'envie de faire des produits nets, sans bruit, qui règlent un vrai problème — le sien d'abord, souvent.</p>
+      <p>Sentinel est né du besoin de voir clair dans des clusters Kubernetes en production. BabyWatch, d'un babyphone oublié un soir chez des amis.</p>
+    </div>
+    <div class="contact-card" id="contact">
+      <p>Une question, un projet, un retour sur un produit ?</p>
+      <a href="mailto:contact@oaas.studio">contact@oaas.studio</a>
+    </div>
+  </div>
+</section>
+
 <footer>
-  OAAS — SAS au capital de 100 € · 12 rue de Rivoli, 59230 Saint-Amand-les-Eaux, France · SIREN 953 100 484<br>
-  Directeur de la publication : Olivier de Régis
+  <div class="wrap">
+    <div>© OAAS · SAS au capital de 100 € · 12 rue de Rivoli, 59230 Saint-Amand-les-Eaux, France · SIREN 953 100 484</div>
+    <div><a href="privacy.html">Confidentialité BabyWatch</a> · <a href="https://sentinel-app.io" target="_blank" rel="noopener">Sentinel</a></div>
+  </div>
 </footer>
+
 </body>
 </html>
