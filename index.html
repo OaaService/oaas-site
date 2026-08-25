@@ -65,6 +65,12 @@
   .row h3 { margin: 0 0 6px; font-size: 24px; letter-spacing: -.02em; font-weight: 600; }
   .row .tag { font-size: 14px; color: var(--fg-2); margin: 0; }
   .row .desc { font-size: 15px; color: var(--fg-2); margin: 0; }
+  .row .desc p { margin: 0 0 10px; }
+  .row .desc p:last-child { margin-bottom: 0; }
+  .row .desc .more { font-size: 13px; color: var(--fg-3); }
+  .row h3 a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .row .meta a { color: var(--fg-2); }
+  .row .meta a:hover { color: var(--fg); }
   .row .meta { font-family: var(--mono); font-size: 11px; color: var(--fg-3); display: flex; flex-direction: column; gap: 6px; padding-top: 4px; }
   .row .arrow { color: var(--fg-3); font-size: 18px; padding-top: 2px; transition: transform .15s, color .15s; }
   .row:hover .arrow { color: var(--fg); transform: translateX(4px); }
@@ -124,40 +130,46 @@
   <div class="head"><h2 data-i18n="work.title">Work</h2><span class="mono" data-i18n="work.count">02 products</span></div>
   <div class="work">
 
-    <a class="row" href="https://sentinel-app.io" target="_blank" rel="noopener">
+    <div class="row">
       <span class="idx">01</span>
       <div>
-        <h3>Sentinel</h3>
+        <h3><a href="https://sentinel-app.io" target="_blank" rel="noopener">Sentinel</a></h3>
         <p class="tag" data-i18n="sentinel.tag"></p>
       </div>
       <p class="desc" data-i18n="sentinel.desc"></p>
       <div class="meta">
         <span class="status" data-i18n="sentinel.status">Live</span>
         <span>SaaS · Kubernetes</span>
-        <span>sentinel-app.io</span>
+        <a href="https://sentinel-app.io" target="_blank" rel="noopener">sentinel-app.io</a>
       </div>
-      <span class="arrow">→</span>
-    </a>
+      <a class="arrow" href="https://sentinel-app.io" target="_blank" rel="noopener">→</a>
+    </div>
 
-    <a class="row" href="https://teamlock.io" target="_blank" rel="noopener">
+    <div class="row">
       <span class="idx">02</span>
       <div>
-        <h3>Teamlock</h3>
+        <h3><a href="https://teamlock.io" target="_blank" rel="noopener">Teamlock</a></h3>
         <p class="tag" data-i18n="tl.tag"></p>
       </div>
-      <p class="desc" data-i18n="tl.desc"></p>
+      <div class="desc">
+        <p data-i18n="tl.desc"></p>
+        <p data-i18n="tl.p2"></p>
+        <p class="more" data-i18n="tl.more"></p>
+      </div>
       <div class="meta">
         <span class="status" data-i18n="tl.status">Live</span>
         <span data-i18n="tl.meta">Open source · Self-hosted</span>
-        <span>teamlock.io</span>
+        <a href="https://teamlock.io" target="_blank" rel="noopener">teamlock.io</a>
+        <a href="https://github.com/Teamlock/Teamlock" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/Teamlock/Documentation" target="_blank" rel="noopener" data-i18n="tl.docs">Documentation</a>
       </div>
-      <span class="arrow">→</span>
-    </a>
+      <a class="arrow" href="https://teamlock.io" target="_blank" rel="noopener">→</a>
+    </div>
 
-    <a class="row" href="privacy.html">
+    <div class="row">
       <span class="idx">03</span>
       <div>
-        <h3>BabyWatch</h3>
+        <h3><a href="privacy.html">BabyWatch</a></h3>
         <p class="tag" data-i18n="bw.tag"></p>
       </div>
       <p class="desc" data-i18n="bw.desc"></p>
@@ -165,9 +177,10 @@
         <span class="status soon" data-i18n="bw.status">Coming to Google Play</span>
         <span>Android · Wear OS</span>
         <span data-i18n="bw.offline">100% offline</span>
+        <a href="privacy.html" data-i18n="bw.privacy">Privacy</a>
       </div>
-      <span class="arrow">→</span>
-    </a>
+      <a class="arrow" href="privacy.html">→</a>
+    </div>
 
   </div>
 </section>
