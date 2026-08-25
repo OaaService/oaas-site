@@ -4,94 +4,201 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>OAAS</title>
-<meta name="description" content="OAAS is a small software studio in Lille, France. We make Sentinel, Teamlock and BabyWatch.">
-<meta name="theme-color" content="#141413">
+<meta name="description" content="OAAS is an independent software studio. Sentinel — monitoring for SaaS & Kubernetes. BabyWatch — baby monitor for Wear OS.">
+<meta property="og:title" content="OAAS — software studio">
+<meta property="og:description" content="Software that does one thing, and does it well.">
+<meta name="theme-color" content="#0a0a0b">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root { --bg: #141413; --fg: #e8e4dd; --fg-2: #a39e96; --fg-3: #6f6a63; --line: #26251f; }
+  :root {
+    --bg: #0a0a0b; --bg-2: #0f0f11; --line: #1f1f23; --line-2: #2a2a30;
+    --fg: #ededef; --fg-2: #a1a1aa; --fg-3: #6b6b75;
+    --accent: #7c9cff;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sans: Inter, -apple-system, system-ui, "Segoe UI", sans-serif;
+  }
   * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--fg); font-family: Inter, -apple-system, system-ui, sans-serif; font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-  .page { max-width: 620px; margin: 0 auto; padding: 72px 24px 96px; }
-  a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--fg-3); text-underline-offset: 3px; }
-  a:hover { text-decoration-color: var(--fg); }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg); font-family: var(--sans); line-height: 1.5;
+    -webkit-font-smoothing: antialiased; font-feature-settings: "cv11", "ss01";
+    background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 64px 64px; background-position: center top;
+  }
+  body::before { content: ""; position: fixed; inset: 0; background: radial-gradient(80% 60% at 50% 0%, transparent 40%, var(--bg) 100%); pointer-events: none; z-index: 0; }
+  .page { position: relative; z-index: 1; max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  a { color: inherit; text-decoration: none; }
+  .mono { font-family: var(--mono); font-size: 12px; letter-spacing: .02em; color: var(--fg-3); text-transform: uppercase; }
 
-  .top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 96px; }
-  .top .name { font-family: Newsreader, Georgia, serif; font-size: 22px; font-weight: 500; letter-spacing: -.01em; text-decoration: none; }
-  .lang a { font-size: 13px; color: var(--fg-3); text-decoration: none; margin-left: 12px; }
-  .lang a.active { color: var(--fg); }
+  nav { display: flex; align-items: center; justify-content: space-between; height: 72px; border-bottom: 1px solid var(--line); }
+  .brand { font-weight: 600; letter-spacing: -.02em; font-size: 15px; display: flex; align-items: center; gap: 10px; }
+  .brand i { width: 8px; height: 8px; border-radius: 2px; background: var(--accent); display: inline-block; }
+  nav ul { list-style: none; display: flex; gap: 28px; margin: 0; padding: 0; align-items: center; }
+  nav ul a { font-size: 13px; color: var(--fg-2); }
+  nav ul a:hover { color: var(--fg); }
+  .lang { display: flex; border: 1px solid var(--line-2); border-radius: 6px; overflow: hidden; }
+  .lang a { font-family: var(--mono); font-size: 11px; padding: 4px 8px; color: var(--fg-3); }
+  .lang a.active { background: var(--line); color: var(--fg); }
+  @media (max-width: 640px) { nav ul li:not(.langli) { display: none; } }
 
-  .intro { font-family: Newsreader, Georgia, serif; font-size: 34px; line-height: 1.25; font-weight: 400; letter-spacing: -.01em; margin: 0 0 20px; }
-  .intro em { font-style: italic; color: var(--fg-2); }
-  .sub { color: var(--fg-2); margin: 0 0 88px; font-size: 17px; }
+  .hero { padding: 128px 0 96px; border-bottom: 1px solid var(--line); }
+  .hero h1 { font-size: clamp(40px, 7vw, 84px); line-height: .98; letter-spacing: -.045em; font-weight: 600; margin: 20px 0 32px; max-width: 14ch; }
+  .hero h1 em { font-style: normal; color: var(--fg-3); }
+  .hero p { font-size: 18px; color: var(--fg-2); max-width: 52ch; margin: 0 0 40px; }
+  .actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn { font-size: 13px; font-weight: 500; padding: 10px 16px; border-radius: 6px; border: 1px solid var(--line-2); color: var(--fg); transition: background .15s, border-color .15s; }
+  .btn:hover { background: var(--bg-2); border-color: var(--fg-3); }
+  .btn.primary { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+  .btn.primary:hover { background: #fff; }
 
-  h2 { font-family: Newsreader, Georgia, serif; font-size: 20px; font-weight: 500; margin: 0 0 24px; color: var(--fg-2); font-style: italic; }
-  .work { list-style: none; padding: 0; margin: 0 0 88px; }
-  .work li { padding: 22px 0; border-top: 1px solid var(--line); }
-  .work li:last-child { border-bottom: 1px solid var(--line); }
-  .work .t { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
-  .work .t a { font-size: 18px; font-weight: 500; text-decoration: none; }
-  .work .t a:hover { text-decoration: underline; }
-  .work .t span { font-size: 13px; color: var(--fg-3); white-space: nowrap; }
-  .work p { margin: 6px 0 0; color: var(--fg-2); }
-  .work .more { margin-top: 10px; font-size: 14px; color: var(--fg-3); }
-  .work .links { margin-top: 10px; font-size: 14px; }
-  .work .links a { color: var(--fg-2); margin-right: 14px; }
+  section { padding: 80px 0; border-bottom: 1px solid var(--line); }
+  .head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 40px; gap: 24px; }
+  .head h2 { font-size: 13px; font-weight: 500; letter-spacing: -.01em; margin: 0; color: var(--fg); }
 
-  .about p { margin: 0 0 18px; color: var(--fg-2); }
-  .about p strong { color: var(--fg); font-weight: 500; }
-  .contact { margin: 0 0 96px; }
-  .contact a { font-size: 18px; }
+  /* Work index */
+  .work { border-top: 1px solid var(--line); }
+  .row { display: grid; grid-template-columns: 56px 1.1fr 1.6fr 140px 24px; gap: 24px; align-items: start; padding: 32px 0; border-bottom: 1px solid var(--line); transition: background .15s; }
+  .row:hover { background: linear-gradient(90deg, var(--bg-2), transparent); }
+  .row .idx { font-family: var(--mono); font-size: 12px; color: var(--fg-3); padding-top: 4px; }
+  .row h3 { margin: 0 0 6px; font-size: 24px; letter-spacing: -.02em; font-weight: 600; }
+  .row .tag { font-size: 14px; color: var(--fg-2); margin: 0; }
+  .row .desc { font-size: 15px; color: var(--fg-2); margin: 0; }
+  .row .meta { font-family: var(--mono); font-size: 11px; color: var(--fg-3); display: flex; flex-direction: column; gap: 6px; padding-top: 4px; }
+  .row .arrow { color: var(--fg-3); font-size: 18px; padding-top: 2px; transition: transform .15s, color .15s; }
+  .row:hover .arrow { color: var(--fg); transform: translateX(4px); }
+  .status { display: inline-flex; align-items: center; gap: 6px; }
+  .status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #3ddc84; box-shadow: 0 0 8px #3ddc8488; }
+  .status.soon::before { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+  @media (max-width: 800px) { .row { grid-template-columns: 40px 1fr 24px; } .row .desc, .row .meta { grid-column: 2; } }
 
-  footer { font-size: 12px; color: var(--fg-3); line-height: 1.7; }
-  footer a { color: var(--fg-3); }
+  /* Principles */
+  .principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .principles div { background: var(--bg); padding: 32px 28px; }
+  .principles .n { font-family: var(--mono); font-size: 11px; color: var(--accent); margin-bottom: 20px; display: block; }
+  .principles h3 { font-size: 16px; margin: 0 0 10px; font-weight: 600; letter-spacing: -.01em; }
+  .principles p { margin: 0; font-size: 14px; color: var(--fg-2); }
+  @media (max-width: 800px) { .principles { grid-template-columns: 1fr; } }
+
+  /* About / contact */
+  .about { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+  .about p { font-size: 16px; color: var(--fg-2); margin: 0 0 16px; }
+  .about strong { color: var(--fg); font-weight: 500; }
+  .contact { border: 1px solid var(--line-2); border-radius: 8px; padding: 28px; background: var(--bg-2); align-self: start; }
+  .contact p { margin: 0 0 14px; color: var(--fg-2); font-size: 14px; }
+  .contact a.mail { font-family: var(--mono); font-size: 15px; color: var(--fg); border-bottom: 1px solid var(--fg-3); padding-bottom: 2px; }
+  .contact a.mail:hover { border-color: var(--fg); }
+  @media (max-width: 800px) { .about { grid-template-columns: 1fr; gap: 32px; } }
+
+  footer { padding: 32px 0 48px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-family: var(--mono); font-size: 11px; color: var(--fg-3); }
+  footer a:hover { color: var(--fg); }
 </style>
 <script src="i18n.js" defer></script>
 </head>
 <body>
 <div class="page">
 
-  <div class="top">
-    <a class="name" href="#">OAAS</a>
-    <span class="lang"><a href="#" data-lang="en">English</a><a href="#" data-lang="fr">Français</a></span>
-  </div>
-
-  <p class="intro" data-i18n="intro"></p>
-  <p class="sub" data-i18n="sub"></p>
-
-  <h2 data-i18n="work.h"></h2>
-  <ul class="work">
-    <li>
-      <div class="t"><a href="https://sentinel-app.io" target="_blank" rel="noopener">Sentinel</a><span data-i18n="sentinel.meta"></span></div>
-      <p data-i18n="sentinel.p"></p>
-    </li>
-    <li>
-      <div class="t"><a href="https://teamlock.io" target="_blank" rel="noopener">Teamlock</a><span data-i18n="tl.meta"></span></div>
-      <p data-i18n="tl.p"></p>
-      <p data-i18n="tl.p2"></p>
-      <p class="more" data-i18n="tl.more"></p>
-      <p class="links"><a href="https://teamlock.io" target="_blank" rel="noopener">teamlock.io</a><a href="https://github.com/Teamlock/Teamlock" target="_blank" rel="noopener">GitHub</a><a href="https://github.com/Teamlock/Documentation" target="_blank" rel="noopener" data-i18n="tl.docs">Documentation</a></p>
-    </li>
-    <li>
-      <div class="t"><a href="privacy.html">BabyWatch</a><span data-i18n="bw.meta"></span></div>
-      <p data-i18n="bw.p"></p>
-    </li>
+<nav>
+  <a class="brand" href="#"><i></i>OAAS</a>
+  <ul>
+    <li><a href="#work" data-i18n="nav.work">Work</a></li>
+    <li><a href="#principles" data-i18n="nav.principles">Principles</a></li>
+    <li><a href="#studio" data-i18n="nav.studio">Studio</a></li>
+    <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+    <li class="langli"><span class="lang"><a href="#" data-lang="en">EN</a><a href="#" data-lang="fr">FR</a></span></li>
   </ul>
+</nav>
 
-  <h2 data-i18n="about.h"></h2>
-  <div class="about">
-    <p data-i18n="about.p1"></p>
-    <p data-i18n="about.p2"></p>
+<header class="hero">
+  <span class="mono" data-i18n="hero.eyebrow">Independent software studio — France</span>
+  <h1 data-i18n="hero.title">Software that does one thing.<br><em>And does it well.</em></h1>
+  <p data-i18n="hero.lead"></p>
+  <div class="actions">
+    <a class="btn primary" href="#work" data-i18n="hero.cta1">See the work</a>
+    <a class="btn" href="mailto:contact@oaas.studio" data-i18n="hero.cta2">Get in touch</a>
   </div>
+</header>
 
-  <h2 data-i18n="contact.h"></h2>
-  <p class="contact"><a href="mailto:contact@oaas.studio">contact@oaas.studio</a></p>
+<section id="work">
+  <div class="head"><h2 data-i18n="work.title">Work</h2><span class="mono" data-i18n="work.count">02 products</span></div>
+  <div class="work">
 
-  <footer>
-    <span data-i18n="footer.legal"></span><br>
-    <a href="privacy.html" data-i18n="footer.privacy"></a> · <a href="https://github.com/OaaService" target="_blank" rel="noopener">GitHub</a>
-  </footer>
+    <a class="row" href="https://sentinel-app.io" target="_blank" rel="noopener">
+      <span class="idx">01</span>
+      <div>
+        <h3>Sentinel</h3>
+        <p class="tag" data-i18n="sentinel.tag"></p>
+      </div>
+      <p class="desc" data-i18n="sentinel.desc"></p>
+      <div class="meta">
+        <span class="status" data-i18n="sentinel.status">Live</span>
+        <span>SaaS · Kubernetes</span>
+        <span>sentinel-app.io</span>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="row" href="https://teamlock.io" target="_blank" rel="noopener">
+      <span class="idx">02</span>
+      <div>
+        <h3>Teamlock</h3>
+        <p class="tag" data-i18n="tl.tag"></p>
+      </div>
+      <p class="desc" data-i18n="tl.desc"></p>
+      <div class="meta">
+        <span class="status" data-i18n="tl.status">Live</span>
+        <span data-i18n="tl.meta">Open source · Self-hosted</span>
+        <span>teamlock.io</span>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="row" href="privacy.html">
+      <span class="idx">03</span>
+      <div>
+        <h3>BabyWatch</h3>
+        <p class="tag" data-i18n="bw.tag"></p>
+      </div>
+      <p class="desc" data-i18n="bw.desc"></p>
+      <div class="meta">
+        <span class="status soon" data-i18n="bw.status">Coming to Google Play</span>
+        <span>Android · Wear OS</span>
+        <span data-i18n="bw.offline">100% offline</span>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+  </div>
+</section>
+
+<section id="principles">
+  <div class="head"><h2 data-i18n="principles.title">Principles</h2><span class="mono" data-i18n="principles.sub">Non-negotiable</span></div>
+  <div class="principles">
+    <div><span class="n">01</span><h3 data-i18n="p1.h"></h3><p data-i18n="p1.p"></p></div>
+    <div><span class="n">02</span><h3 data-i18n="p2.h"></h3><p data-i18n="p2.p"></p></div>
+    <div><span class="n">03</span><h3 data-i18n="p3.h"></h3><p data-i18n="p3.p"></p></div>
+  </div>
+</section>
+
+<section id="studio">
+  <div class="head"><h2 data-i18n="studio.title">Studio</h2><span class="mono">Lille, FR</span></div>
+  <div class="about">
+    <div>
+      <p data-i18n="studio.p1"></p>
+      <p data-i18n="studio.p2"></p>
+    </div>
+    <div class="contact" id="contact">
+      <p data-i18n="contact.p"></p>
+      <a class="mail" href="mailto:contact@oaas.studio">contact@oaas.studio</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span data-i18n="footer.legal"></span>
+  <span><a href="privacy.html" data-i18n="footer.privacy"></a> · <a href="https://github.com/OaaService" target="_blank" rel="noopener">GitHub</a></span>
+</footer>
 
 </div>
 </body>
